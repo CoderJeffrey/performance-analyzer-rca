@@ -465,6 +465,7 @@ public class OpenSearchAnalysisGraph extends AnalysisGraph {
                 RcaConsts.RcaTagConstants.LOCUS_DATA_NODE);
 
         // SearchBackPressure Decider
+        LOG.info("SearchBackPressure Decider is enabled in OpenSearchAnalysisGraph");
         SearchBackPressureDecider searchBackPressureDecider =
                 new SearchBackPressureDecider(
                         EVALUATION_INTERVAL_SECONDS, 12, searchBackPressureClusterRCA);

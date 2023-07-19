@@ -187,7 +187,7 @@ public class SearchBackPressureRCA extends Rca<ResourceFlowUnit<HotNodeSummary>>
 
         updateAllSlidingWindows(searchBackPressureRCAMetric, currentTimeMillis);
 
-        LOG.info("SearchBackPressureRCA currentIterationNumber is {}", currentIterationNumber);
+        // LOG.info("SearchBackPressureRCA currentIterationNumber is {}", currentIterationNumber);
         // if currentIterationNumber matches the rca period, emit the flow unit
         if (currentIterationNumber == this.rcaPeriod) {
             LOG.info(
@@ -252,7 +252,7 @@ public class SearchBackPressureRCA extends Rca<ResourceFlowUnit<HotNodeSummary>>
                     avgShardJVMCancellationPercentage,
                     heapShardCancellationIncreaseMaxThreshold);
 
-            if (increaseJVMThresholdMetByShard || decreaseJVMThresholdMetByShard) {
+            if (increaseJVMThresholdMetByShard || decreaseJVMThresholdMetByShard || true) {
                 context = new ResourceContext(Resources.State.UNHEALTHY);
                 HotResourceSummary resourceSummary;
                 // metadata fields indicate the reason for Unhealthy Resource Unit
@@ -456,13 +456,13 @@ public class SearchBackPressureRCA extends Rca<ResourceFlowUnit<HotNodeSummary>>
             if (!flowUnit.isEmpty()) {
                 double metricResponse =
                         readDataFromSqlResult(flowUnit.getData(), field, fieldName, MetricsDB.MAX);
-                LOG.info("Searchbp metricResponse is: {}", metricResponse);
+                // LOG.info("Searchbp metricResponse is: {}", metricResponse);
                 if (!Double.isNaN(metricResponse) && metricResponse >= 0.0) {
                     response = metricResponse;
                 }
             }
         }
-        LOG.info("Searchbp response is: {}", response);
+
         return response;
     }
 
